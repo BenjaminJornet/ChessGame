@@ -11,6 +11,17 @@ public class ChessGameDemo extends JFrame implements MouseListener, MouseMotionL
   int xAdjustment;
   int yAdjustment;
  
+  private void addPiece(String path,int x,int y){
+	  int c = x+y*8;
+	  if(c>64){
+		  return;
+	  }
+	  JLabel piece = new JLabel( new ImageIcon(path) );
+	  JPanel panel = (JPanel)chessBoard.getComponent(c);
+	  panel.add(piece);
+  }
+  
+  
   public ChessGameDemo(){
   Dimension boardSize = new Dimension(600, 600);
  
@@ -39,20 +50,44 @@ public class ChessGameDemo extends JFrame implements MouseListener, MouseMotionL
   else
   square.setBackground( i % 2 == 0 ? Color.white : Color.black );
   }
- 
-  //Add a few pieces to the board
- 
-  JLabel piece = new JLabel( new ImageIcon("images/cavalierBlancS.png") );
-  JPanel panel = (JPanel)chessBoard.getComponent(0);
-  panel.add(piece);
-  piece = new JLabel(new ImageIcon("images/reineBlancS.png"));
-  panel = (JPanel)chessBoard.getComponent(15);
-  panel.add(piece);
+   
+  initialise();
   
-
   }
  
-  public void mousePressed(MouseEvent e){
+  private void initialise() {
+	  addPiece("images/cavalierBlancS.png",1,0);
+	  addPiece("images/cavalierBlancS.png",6,0);
+	  addPiece("images/cavalierNoirS.png",1,7);
+	  addPiece("images/cavalierNoirS.png",6,7);
+	  addPiece("images/fouBlancS.png",2,0);
+	  addPiece("images/fouBlancS.png",5,0);
+	  addPiece("images/fouNoirS.png",2,7);
+	  addPiece("images/fouNoirS.png",5,7);
+	  addPiece("images/reineBlancS.png",3,0);
+	  addPiece("images/reineNoireS.png",3,7);
+	  addPiece("images/roiNoirS.png",4,7);
+	  addPiece("images/roiBlancS.png",4,0);
+	  addPiece("images/tourBlancS.png",0,0);
+	  addPiece("images/tourBlancS.png",7,0);
+	  addPiece("images/tourNoireS.png",0,7);
+	  addPiece("images/tourNoireS.png",7,7);
+
+	  int r;
+	  for(r=0;r<=7;r++){
+		  addPiece("images/pionBlancS.png",r,1);
+		  addPiece("images/pionNoirS.png",r,6);
+	  }
+
+
+
+	  
+	 
+	
+}
+
+
+public void mousePressed(MouseEvent e){
   chessPiece = null;
   Component c =  chessBoard.findComponentAt(e.getX(), e.getY());
  
@@ -72,7 +107,9 @@ public class ChessGameDemo extends JFrame implements MouseListener, MouseMotionL
   
   public void mouseDragged(MouseEvent me) {
   if (chessPiece == null) return;
- chessPiece.setLocation(me.getX() + xAdjustment, me.getY() + yAdjustment);
+  System.out.println("From " + me.getX() + "," + me.getY()+ " to "+ (me.getX() + xAdjustment)+", " + (me.getY() + yAdjustment));
+ 
+  chessPiece.setLocation(me.getX() + xAdjustment, me.getY() + yAdjustment);
  }
  
   //Drop the chess piece back onto the chess board
