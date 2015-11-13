@@ -3,6 +3,8 @@ package model;
 import java.util.LinkedList;
 import java.util.List;
 
+import launcher.localLauncher.Observable;
+
 
 /**
  * @author francoise.perrin - 
@@ -21,7 +23,7 @@ import java.util.List;
  * @author francoise.perrin
  *
  */
-public class Echiquier {
+public class Echiquier extends Observable{
 
 	private Jeu jeuBlanc;
 	private Jeu jeuNoir;
@@ -112,7 +114,7 @@ public class Echiquier {
 
 	}
 
-	private boolean isMoveLegal(int xInit, int yInit, int xFinal, int yFinal) {
+	public boolean isMoveLegal(int xInit, int yInit, int xFinal, int yFinal) {
 
 		boolean isPieceOnPath = false;
 		Coord coordPieceInter = null;
@@ -376,9 +378,9 @@ public class Echiquier {
 	}
 
 
-	//	public static void main(String[] args) {
-	//		Echiquier e = new Echiquier();
-	//			System.out.println(e.getPiecesIHM());
-	//		}
+	public static void main(String[] args) {
+		Echiquier e = new Echiquier();
+			System.out.println(e.getPiecesIHM());
+		}
 
 }
