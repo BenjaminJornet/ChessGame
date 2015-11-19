@@ -55,7 +55,7 @@ public class ChessImageProvider {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println(ChessImageProvider.getImageFile("Cavalier", Couleur.BLANC));
+		//System.out.println(ChessImageProvider.getImageFile("Cavalier", Couleur.BLANC));
 	}
 
 }

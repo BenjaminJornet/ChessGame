@@ -58,6 +58,6 @@ public class ChessPieceFactory {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println(ChessPieceFactory.newPieces(Couleur.BLANC));
+		//System.out.println(ChessPieceFactory.newPieces(Couleur.BLANC));
 	}
 }

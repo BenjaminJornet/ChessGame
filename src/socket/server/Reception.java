@@ -21,7 +21,7 @@ public class Reception implements Runnable {
 			try {
 
 				message = in.readLine();
-				System.out.println("\n"+login+" : "+message);
+				//System.out.println("\n"+login+" : "+message);
 
 			} catch (IOException e) {
 

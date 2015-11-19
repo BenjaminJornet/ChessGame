@@ -27,28 +27,8 @@ public class ChessGameControler implements ChessGameControlers{
 	
 	public boolean move(Coord initCoord, Coord finalCoord){		
 		// Verifie si mouvement possible
-		boolean mouvementPossible = false;
-		mouvementPossible = this.chessGame.getEchiquier().move(initCoord.x, initCoord.y, finalCoord.x, finalCoord.y);
+		return this.chessGame.move(initCoord.x, initCoord.y, finalCoord.x, finalCoord.y);
 		
-		return mouvementPossible;
-		/*
-		boolean mouvementPossible = false;
-		Echiquier echiquierMove = chessGame.getEchiquier();
-		
-		if((echiquierMove.isMoveLegal(initCoord.x, initCoord.y, finalCoord.x, finalCoord.y))
-			&&(echiquierMove.isMoveOk(initCoord.x, initCoord.y, finalCoord.x, finalCoord.y))){
-			
-			// Effectue le mouvement si possible
-			mouvementPossible = echiquierMove.move(initCoord.x, initCoord.y, finalCoord.y, finalCoord.y);
-			
-			if(mouvementPossible){
-				// Changement de joueur
-				echiquierMove.switchJoueur();
-				return true;
-			}
-		}
-		return mouvementPossible;
-		*/
 	}
 	
 	public boolean isEnd(){
@@ -58,4 +38,21 @@ public class ChessGameControler implements ChessGameControlers{
 	public Couleur getColorCurrentPlayer(){
 		return this.chessGame.getColorCurrentPlayer();
 	}
-}
+	public static void main(String[]args){
+		ChessGameControler cont = new ChessGameControler(new ChessGame());
+		int a,b,c,d;
+		for(a=0;a<10;a++){
+			for(b=0;b<10;b++){
+				for(c=0;c<10;c++){
+					for(d=0;d<10;d++){
+				
+			
+		boolean test= cont.move(new Coord(a,b),new Coord(c,d));
+		System.out.println("("+a+","+b+")-->("+c+","+d+")  " + (test?"success":"fail"));
+		
+		}
+	}
+			}
+			}
+		}
+	}

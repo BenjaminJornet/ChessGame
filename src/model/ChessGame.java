@@ -10,9 +10,6 @@ public class ChessGame extends Observable {
 		this.echiquierCourant = new Echiquier();
 	}
 
-	public Echiquier getEchiquier(){
-		return this.echiquierCourant;
-	}
 	
 	public void setEchiquier(Echiquier e){
 		this.echiquierCourant = e;
@@ -31,14 +28,18 @@ public class ChessGame extends Observable {
 			
 			// Effectue le mouvement si possible
 			mouvementPossible = echiquierCourant.move(xInit, yInit, xFinal, yFinal);
-			
+			//System.out.println("mouvement legal");
 			if(mouvementPossible){
 				// Changement de joueur
+				//System.out.println("on bouge");
+
 				echiquierCourant.switchJoueur();
 				mouvementPossible = true;
 			}
 		}
-		 _notify(this);
+		//System.out.println("on notify");
+		//System.out.println(mouvementPossible);
+		 _notify(echiquierCourant);
 		return mouvementPossible;
 	}
 	

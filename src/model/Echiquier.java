@@ -98,16 +98,21 @@ public class Echiquier extends Observable{
 
 		this.setMessage("KO : la position finale ne correspond pas à "
 				+ "algo de déplacement légal de la piece ");
+		System.out.println("KO : la position finale ne correspond pas à "
+				+ "algo de déplacement légal de la piece ");
 
 		//	s'il n'existe pas de piece du jeu courant aux coordonnées initiales --> false
 		this.isPieceToMoveOk = jeuCourant.isPieceHere(xInit, yInit)	;
 		if (!this.isPieceToMoveOk) {
 			this.isMoveOk = false;
 			this.setMessage("KO : c'est au tour de l'autre joueur");
+			//System.out.println("KO : c'est au tour de l'autre joueur");
 		}
 		else {
 			this.isMoveOk = isMoveLegal(xInit,  yInit,  xFinal,  yFinal);			
 		}
+		//System.out.println("isMoveOK move ok "+this.isMoveOk);
+
 		return this.isMoveOk;
 
 	}
@@ -121,15 +126,18 @@ public class Echiquier extends Observable{
 		this.isMoveOk = false;
 
 		// si coordonnées finales == coordonnées initiales --> false
-		if (!(xInit == xFinal &&  yInit == yFinal)){		
+		if (!(xInit == xFinal &&  yInit == yFinal)){
+			//System.out.println("move");
 
 			//  s'il existe une piéce intermédiaire sur la trajectoire --> false (sauf cavalier)
 			coordPieceInter = this.pieceOnTraject(xInit, yInit, xFinal, yFinal);
+			//System.out.println(coordPieceInter);
 			if (coordPieceInter != null) {
+				
 
 				// s'il existe une piéce positionnées aux coordonnées finales :
 				if (coordPieceInter.x == xFinal && coordPieceInter.y == yFinal){
-
+					//System.out.println("case non disponible");
 					//	si elle est de la méme couleur --> false ou potentiel "roque du roi"
 					if (this.jeuCourant.isPieceHere(xFinal, yFinal) ){
 						this.jeuCourant.setCastling();
@@ -144,6 +152,7 @@ public class Echiquier extends Observable{
 				// pièce intermédiaire sur la trajectoire qui empêche déplacement
 				else {
 					isPieceOnPath = true;
+					//System.out.println("piece dans le chemin");
 				}
 			}
 
@@ -152,7 +161,10 @@ public class Echiquier extends Observable{
 
 			this.isMoveOk = this.isPieceToMoveOk && !isPieceOnPath && isMoveJeuOk;	
 		}
-		
+		//System.out.println(this.isPieceToMoveOk);
+		//System.out.println(!isPieceOnPath);
+		//System.out.println(jeuCourant.isMoveOk(xInit, yInit, xFinal, yFinal));
+		//System.out.println("isMoveLegal move ok "+this.isMoveOk);
 		return this.isMoveOk;
 	}
 
@@ -378,7 +390,7 @@ public class Echiquier extends Observable{
 
 	public static void main(String[] args) {
 		Echiquier e = new Echiquier();
-			System.out.println(e.getPiecesIHM());
+			//System.out.println(e.getPiecesIHM());
 		}
 
 }

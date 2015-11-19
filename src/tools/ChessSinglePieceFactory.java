@@ -49,6 +49,6 @@ public class ChessSinglePieceFactory {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println(ChessSinglePieceFactory.newPiece(Couleur.BLANC, "Tour", 0, 6));
+		//System.out.println(ChessSinglePieceFactory.newPiece(Couleur.BLANC, "Tour", 0, 6));
 	}
 }

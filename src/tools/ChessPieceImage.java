@@ -35,9 +35,9 @@ public enum ChessPieceImage {
 
 	public static void main(String[] args) {
 		for (int i = 0; i < ChessPieceImage.values().length; i++) {
-			System.out.print(ChessPieceImage.values()[i].nom + " \t"); 
-			System.out.print(ChessPieceImage.values()[i].imageFile + " \t"); 
-			System.out.println();
+			//System.out.print(ChessPieceImage.values()[i].nom + " \t"); 
+			//System.out.print(ChessPieceImage.values()[i].imageFile + " \t"); 
+			//System.out.println();
 		}
 	}
 }

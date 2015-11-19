@@ -1,7 +1,8 @@
 package utils;
 
 import model.ChessGame;
+import model.Echiquier;
 
 public interface Observeur {
-	void update(ChessGame c);
+	void update(Echiquier echiquierCourant);
 }
