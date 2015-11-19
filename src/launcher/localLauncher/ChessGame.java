@@ -19,8 +19,7 @@ public class ChessGame extends Observable {
 	}
 	
 	public String toString(){
-		String st = echiquierCourant.toString();
-		return st;
+		return echiquierCourant.toString();
 	}
 	
 	public boolean move (int xInit, int yInit, int xFinal, int yFinal){
