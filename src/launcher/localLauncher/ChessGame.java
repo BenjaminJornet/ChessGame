@@ -4,12 +4,19 @@ import model.Couleur;
 import model.Echiquier;
 
 public class ChessGame extends Observable {
-	Echiquier echiquierCourant;
+	private Echiquier echiquierCourant;
 	
 	public ChessGame(){
 		this.echiquierCourant = new Echiquier();
 	}
 
+	public Echiquier getEchiquier(){
+		return this.echiquierCourant;
+	}
+	
+	public void setEchiquier(Echiquier e){
+		this.echiquierCourant = e;
+	}
 	
 	public String toString(){
 		String st = echiquierCourant.toString();
