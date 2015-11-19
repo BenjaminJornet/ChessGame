@@ -1,24 +1,22 @@
 package controler.controlerLocal;
 
 import launcher.localLauncher.ChessGame;
-import model.AbstractPiece;
 import model.Coord;
 import model.Couleur;
 import model.Echiquier;
-import model.Pieces;
 
 public class ChessGameControler implements ChessGameControlers{
 
 //	Echiquier echiquierControler;
-	Pieces pieceAbstraite;
+	//Pieces pieceAbstraite;
 	//Echiquier echiquierCourant;
 	ChessGame chessGame;
 	
-	public ChessGameControler(String namePiece, Couleur couleurPiece, int X, int Y) {
+	public ChessGameControler(ChessGame c) {
 		// TODO Auto-generated constructor stub
-		this.chessGame = new ChessGame();
-		Coord coordonnees = new Coord (pieceAbstraite.getX(), pieceAbstraite.getY());
-		this.pieceAbstraite = new Pieces(namePiece, couleurPiece, coordonnees);
+		this.chessGame = c;
+		//Coord coordonnees = new Coord (pieceAbstraite.getX(), pieceAbstraite.getY());
+		//this.pieceAbstraite = new Pieces(namePiece, couleurPiece, coordonnees);
 		//this.echiquierCourant = new Echiquier();
 	}
 	
@@ -30,6 +28,11 @@ public class ChessGameControler implements ChessGameControlers{
 	
 	public boolean move(Coord initCoord, Coord finalCoord){		
 		// Verifie si mouvement possible
+		boolean mouvementPossible = false;
+		mouvementPossible = this.chessGame.getEchiquier().move(initCoord.x, initCoord.y, finalCoord.x, finalCoord.y);
+		
+		return mouvementPossible;
+		/*
 		boolean mouvementPossible = false;
 		Echiquier echiquierMove = chessGame.getEchiquier();
 		
@@ -46,6 +49,7 @@ public class ChessGameControler implements ChessGameControlers{
 			}
 		}
 		return mouvementPossible;
+		*/
 	}
 	
 	public boolean isEnd(){

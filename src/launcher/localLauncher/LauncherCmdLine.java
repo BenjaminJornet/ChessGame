@@ -8,7 +8,7 @@ import controler.controlerLocal.ChessGameControler;
  * @author francoise.perrin
  * Lance l'exécution d'un jeu d'échec en mode console.
  */
-public class LauncherCmdLine {	
+public class LauncherCmdLine implements Observeur{	
 	
 	public static void main(String[] args) {		
 		
@@ -19,6 +19,12 @@ public class LauncherCmdLine {
 		chessGameControler = new ChessGameControler(chessGame);
 				
 		new ChessGameCmdLine(chessGameControler);	
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

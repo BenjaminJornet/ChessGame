@@ -35,8 +35,6 @@ public class Echiquier extends Observable{
 	private boolean isPieceToMoveOk;
 
 
-
-
 	public Echiquier () {
 		super();
 		this.jeuBlanc = new Jeu(Couleur.BLANC);
