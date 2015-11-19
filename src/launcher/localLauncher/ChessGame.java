@@ -36,27 +36,22 @@ public class ChessGame extends Observable {
 			if(mouvementPossible){
 				// Changement de joueur
 				echiquierCourant.switchJoueur();
-				return true;
+				mouvementPossible = true;
 			}
 		}
+		 _notify();
 		return mouvementPossible;
 	}
 	
 	public boolean isEnd(){
-		return false;
-		// TODO Auto-generated constructor stub
-
+		return this.echiquierCourant.isEnd();
 	}
 	
 	public String getMessage(){
-		return null;
-		// TODO Auto-generated constructor stub
-
+		return this.echiquierCourant.getMessage();
 	}
 	
 	public Couleur getColorCurrentPlayer(){
-		return null;
-		// TODO Auto-generated constructor stub
-	
+		return this.echiquierCourant.getColorCurrentPlayer();	
 	}
 }

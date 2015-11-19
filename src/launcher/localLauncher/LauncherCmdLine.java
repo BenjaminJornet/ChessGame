@@ -24,6 +24,7 @@ public class LauncherCmdLine implements Observeur{
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
+		 
 		
 	}
 

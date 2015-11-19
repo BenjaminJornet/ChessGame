@@ -22,8 +22,7 @@ public class ChessGameControler implements ChessGameControlers{
 	
 
 	public String getMessage() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.chessGame.getMessage();
 	}
 	
 	public boolean move(Coord initCoord, Coord finalCoord){		
@@ -53,12 +52,10 @@ public class ChessGameControler implements ChessGameControlers{
 	}
 	
 	public boolean isEnd(){
-		// TODO Auto-generated constructor stub
-		return false;
+		return this.chessGame.isEnd();
 
 	}
 	public Couleur getColorCurrentPlayer(){
-		// TODO Auto-generated constructor stub
-		return null;
+		return this.chessGame.getColorCurrentPlayer();
 	}
 }
