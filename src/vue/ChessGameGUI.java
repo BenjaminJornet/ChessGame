@@ -2,20 +2,32 @@ package vue;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
+import java.util.List;
 
 import javax.swing.*;
 
+import controler.controlerLocal.ChessGameControler;
+import model.ChessGame;
+import model.Coord;
 import model.Couleur;
+import model.PieceIHM;
+import utils.Observeur;
 import tools.ChessImageProvider;
  
-public class ChessGameGUI extends JFrame implements MouseListener, MouseMotionListener {
-  JLayeredPane layeredPane;
+public class ChessGameGUI extends JFrame implements MouseListener, MouseMotionListener, Observeur {
+  private ChessGameControler controler;
+JLayeredPane layeredPane;
   JPanel chessBoard;
   JLabel chessPiece;
   int xAdjustment;
   int yAdjustment;
+  
+  private void addPiece(String name,Couleur color,Coord coord){
+	  addPiece(name,color,coord.x,coord.y);
+  }
  
   private void addPiece(String name,Couleur color,int x,int y){
+	  
 	  int c = x+y*8;
 	  if(c>64){
 		  return;
@@ -27,7 +39,13 @@ public class ChessGameGUI extends JFrame implements MouseListener, MouseMotionLi
   }
   
   
-  public ChessGameGUI(){
+  public ChessGameGUI(ChessGameControler c){
+	  this.controler = c;
+	  setDefaultCloseOperation(DISPOSE_ON_CLOSE );
+	  pack();
+	  setResizable(true);
+	  setLocationRelativeTo( null );
+	  setVisible(true);
   Dimension boardSize = new Dimension(600, 600);
  
   //  Use a Layered Pane for this this application
@@ -83,11 +101,6 @@ public class ChessGameGUI extends JFrame implements MouseListener, MouseMotionLi
 		  addPiece("Pion",Couleur.BLANC,r,1);
 		  addPiece("Pion",Couleur.NOIR,r,6);
 	  }
-
-
-
-	  
-	 
 	
 }
 
@@ -112,9 +125,13 @@ public void mousePressed(MouseEvent e){
   
   public void mouseDragged(MouseEvent me) {
   if (chessPiece == null) return;
+  int xStart = me.getX(), yStart = me.getY();
+  int xEnd = xStart + xAdjustment,yEnd = yStart + yAdjustment;
+  
+  controler.move(new Coord(xStart,yStart),new  Coord(xEnd,yEnd));
   System.out.println("From " + me.getX() + "," + me.getY()+ " to "+ (me.getX() + xAdjustment)+", " + (me.getY() + yAdjustment));
+  //chessPiece.setLocation(me.getX() + xAdjustment, me.getY() + yAdjustment);
  
-  chessPiece.setLocation(me.getX() + xAdjustment, me.getY() + yAdjustment);
  }
  
   //Drop the chess piece back onto the chess board
@@ -150,12 +167,15 @@ public void mousePressed(MouseEvent e){
   
   }
  
-  public static void main(String[] args) {
-  JFrame frame = new ChessGameGUI();
-  frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE );
-  frame.pack();
-  frame.setResizable(true);
-  frame.setLocationRelativeTo( null );
-  frame.setVisible(true);
- }
+@Override
+	public void update(ChessGame c) {
+		List<PieceIHM> list_pieces = c.getEchiquier().getPiecesIHM();
+		chessBoard.removeAll();
+		for(PieceIHM p:list_pieces){
+				List<Coord> allcoord = p.getList();
+				for(Coord coord:allcoord){
+					addPiece(p.getTypePiece(),p.getCouleur(),coord);
+				}
+		}
+	}
 }

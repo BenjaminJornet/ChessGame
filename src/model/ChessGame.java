@@ -1,7 +1,7 @@
-package launcher.localLauncher;
+package model;
 
-import model.Couleur;
-import model.Echiquier;
+import utils.Observable;
+
 
 public class ChessGame extends Observable {
 	private Echiquier echiquierCourant;
@@ -39,7 +39,7 @@ public class ChessGame extends Observable {
 				mouvementPossible = true;
 			}
 		}
-		 _notify();
+		 _notify(this);
 		return mouvementPossible;
 	}
 	

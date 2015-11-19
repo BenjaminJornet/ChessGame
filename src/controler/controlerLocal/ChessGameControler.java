@@ -1,6 +1,6 @@
 package controler.controlerLocal;
 
-import launcher.localLauncher.ChessGame;
+import model.ChessGame;
 import model.Coord;
 import model.Couleur;
 import model.Echiquier;

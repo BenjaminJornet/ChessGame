@@ -1,5 +1,7 @@
 package launcher.localLauncher;
 
+import model.ChessGame;
+import utils.Observeur;
 import vue.ChessGameCmdLine;
 import controler.controlerLocal.ChessGameControler;
 
@@ -22,9 +24,8 @@ public class LauncherCmdLine implements Observeur{
 	}
 
 	@Override
-	public void update() {
+	public void update(ChessGame c) {
 		// TODO Auto-generated method stub
-		 
 		
 	}
 

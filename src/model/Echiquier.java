@@ -3,7 +3,7 @@ package model;
 import java.util.LinkedList;
 import java.util.List;
 
-import launcher.localLauncher.Observable;
+import utils.Observable;
 
 
 /**
