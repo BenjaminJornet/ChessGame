@@ -2,27 +2,32 @@ package vue;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
+
 import javax.swing.*;
+
+import model.Couleur;
+import tools.ChessImageProvider;
  
-public class ChessGameDemo extends JFrame implements MouseListener, MouseMotionListener {
+public class ChessGameGUI extends JFrame implements MouseListener, MouseMotionListener {
   JLayeredPane layeredPane;
   JPanel chessBoard;
   JLabel chessPiece;
   int xAdjustment;
   int yAdjustment;
  
-  private void addPiece(String path,int x,int y){
+  private void addPiece(String name,Couleur color,int x,int y){
 	  int c = x+y*8;
 	  if(c>64){
 		  return;
 	  }
+	  String path = ChessImageProvider.getImageFile(name, color);
 	  JLabel piece = new JLabel( new ImageIcon(path) );
 	  JPanel panel = (JPanel)chessBoard.getComponent(c);
 	  panel.add(piece);
   }
   
   
-  public ChessGameDemo(){
+  public ChessGameGUI(){
   Dimension boardSize = new Dimension(600, 600);
  
   //  Use a Layered Pane for this this application
@@ -56,27 +61,27 @@ public class ChessGameDemo extends JFrame implements MouseListener, MouseMotionL
   }
  
   private void initialise() {
-	  addPiece("images/cavalierBlancS.png",1,0);
-	  addPiece("images/cavalierBlancS.png",6,0);
-	  addPiece("images/cavalierNoirS.png",1,7);
-	  addPiece("images/cavalierNoirS.png",6,7);
-	  addPiece("images/fouBlancS.png",2,0);
-	  addPiece("images/fouBlancS.png",5,0);
-	  addPiece("images/fouNoirS.png",2,7);
-	  addPiece("images/fouNoirS.png",5,7);
-	  addPiece("images/reineBlancS.png",3,0);
-	  addPiece("images/reineNoireS.png",3,7);
-	  addPiece("images/roiNoirS.png",4,7);
-	  addPiece("images/roiBlancS.png",4,0);
-	  addPiece("images/tourBlancS.png",0,0);
-	  addPiece("images/tourBlancS.png",7,0);
-	  addPiece("images/tourNoireS.png",0,7);
-	  addPiece("images/tourNoireS.png",7,7);
+	  addPiece("Cavalier",Couleur.BLANC,1,0);
+	  addPiece("Cavalier",Couleur.BLANC,6,0);
+	  addPiece("Cavalier",Couleur.NOIR,1,7);
+	  addPiece("Cavalier",Couleur.NOIR,6,7);
+	  addPiece("Fou",Couleur.BLANC,2,0);
+	  addPiece("Fou",Couleur.BLANC,5,0);
+	  addPiece("Fou",Couleur.NOIR,2,7);
+	  addPiece("Fou",Couleur.NOIR,5,7);
+	  addPiece("Reine",Couleur.BLANC,3,0);
+	  addPiece("Reine",Couleur.NOIR,3,7);
+	  addPiece("Roi",Couleur.NOIR,4,7);
+	  addPiece("Roi",Couleur.BLANC,4,0);
+	  addPiece("Tour",Couleur.BLANC,0,0);
+	  addPiece("Tour",Couleur.BLANC,7,0);
+	  addPiece("Tour",Couleur.NOIR,0,7);
+	  addPiece("Tour",Couleur.NOIR,7,7);
 
 	  int r;
 	  for(r=0;r<=7;r++){
-		  addPiece("images/pionBlancS.png",r,1);
-		  addPiece("images/pionNoirS.png",r,6);
+		  addPiece("Pion",Couleur.BLANC,r,1);
+		  addPiece("Pion",Couleur.NOIR,r,6);
 	  }
 
 
@@ -146,7 +151,7 @@ public void mousePressed(MouseEvent e){
   }
  
   public static void main(String[] args) {
-  JFrame frame = new ChessGameDemo();
+  JFrame frame = new ChessGameGUI();
   frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE );
   frame.pack();
   frame.setResizable(true);

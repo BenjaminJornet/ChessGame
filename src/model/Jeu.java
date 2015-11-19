@@ -290,11 +290,10 @@ public class Jeu  {
 
 	}
 
-
-	//	public static void main(String[] args) {
-	//		Jeu jeu = new Jeu(Couleur.BLANC);
-	//		System.out.println(jeu);
-	//	}
+	public static void main(String[] args) {
+			Jeu jeu = new Jeu(Couleur.BLANC);
+			System.out.println(jeu);
+		}
 
 }
 

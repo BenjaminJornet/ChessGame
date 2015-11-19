@@ -1,8 +1,10 @@
 package tools;
 
 import java.io.File;
+import java.nio.file.FileSystem;
 import java.util.HashMap;
 import java.util.Map;
+
 import model.Couleur;
 
 /**
@@ -39,11 +41,12 @@ public class ChessImageProvider {
 	 */
 	public static String getImageFile(String pieceType, Couleur pieceCouleur){
 		String ret, key, value;
+		String separator = File.separator;
 		ret = null;
 		key = pieceType + pieceCouleur.name();
 		value = mapImage.get(key);
-		File g=new File("");
-		ret = g.getAbsolutePath()+"\\images\\" + value;
+		File f=new File("");
+		ret = f.getAbsolutePath() + separator +"images" + separator + value;
 		return ret;		
 	}
 
