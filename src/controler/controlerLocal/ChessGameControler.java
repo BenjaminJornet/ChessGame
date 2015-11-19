@@ -3,7 +3,7 @@ package controler.controlerLocal;
 import model.ChessGame;
 import model.Coord;
 import model.Couleur;
-import model.Echiquier;
+
 
 public class ChessGameControler implements ChessGameControlers{
 

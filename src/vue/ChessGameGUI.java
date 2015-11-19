@@ -41,17 +41,18 @@ JLayeredPane layeredPane;
   
   public ChessGameGUI(ChessGameControler c){
 	  this.controler = c;
-	  setDefaultCloseOperation(DISPOSE_ON_CLOSE );
-	  pack();
-	  setResizable(true);
-	  setLocationRelativeTo( null );
-	  setVisible(true);
+	  this.setDefaultCloseOperation(DISPOSE_ON_CLOSE );
+	  this.pack();
+	  this.setResizable(true);
+	  this.setLocationRelativeTo( null );
   Dimension boardSize = new Dimension(600, 600);
  
   //  Use a Layered Pane for this this application
  layeredPane = new JLayeredPane();
   getContentPane().add(layeredPane);
   layeredPane.setPreferredSize(boardSize);
+  this.setVisible(true);
+
   layeredPane.addMouseListener(this);
   layeredPane.addMouseMotionListener(this);
 
