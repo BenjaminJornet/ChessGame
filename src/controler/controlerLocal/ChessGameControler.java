@@ -3,6 +3,7 @@ package controler.controlerLocal;
 import model.ChessGame;
 import model.Coord;
 import model.Couleur;
+import model.Echiquier;
 
 
 public class ChessGameControler implements ChessGameControlers{
@@ -39,8 +40,9 @@ public class ChessGameControler implements ChessGameControlers{
 		return this.chessGame.getColorCurrentPlayer();
 	}
 	public static void main(String[]args){
-		ChessGameControler cont = new ChessGameControler(new ChessGame());
-		int a,b,c,d;
+		ChessGame cg =new ChessGame();
+		ChessGameControler cont = new ChessGameControler(cg);
+		/*int a,b,c,d;
 		for(a=0;a<10;a++){
 			for(b=0;b<10;b++){
 				for(c=0;c<10;c++){
@@ -53,6 +55,9 @@ public class ChessGameControler implements ChessGameControlers{
 		}
 	}
 			}
-			}
+			}*/
+		boolean test = cont.move(new Coord(0,6), new Coord(0,4));
+		System.out.println(cont.getMessage());
+		System.out.println(test);
 		}
 	}

@@ -9,7 +9,8 @@ public class LauncherGUI {
 	public static void main(String[]args){
 		 ChessGame cg = new ChessGame();
 		  ChessGameControler controler = new ChessGameControler(cg);
-		  JFrame frame = new ChessGameGUI(controler);
+		  ChessGameGUI frame = new ChessGameGUI(controler);
+		  cg.addObserver(frame);
 	}
 
 }

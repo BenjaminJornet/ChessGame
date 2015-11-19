@@ -5,7 +5,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import tools.ChessPieceFactory;
-import tools.ChessSinglePieceFactory;
 
 /**
  * @author francoise.perrin
@@ -106,7 +105,6 @@ public class Jeu  {
 			}			
 		} 
 
-
 		return isMoveOk;
 	}
 
@@ -122,7 +120,7 @@ public class Jeu  {
 		Pieces pieceToMove = null;
 
 		pieceToMove = this.findPiece(xInit, yInit);
-		//System.out.println("piece :"+pieceToMove);
+
 		if (pieceToMove!=null){
 			ret = pieceToMove.move(xFinal, yFinal);
 
@@ -293,7 +291,7 @@ public class Jeu  {
 
 	public static void main(String[] args) {
 			Jeu jeu = new Jeu(Couleur.BLANC);
-			//System.out.println(jeu);
+			System.out.println(jeu);
 		}
 
 }

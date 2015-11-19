@@ -9,6 +9,7 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -19,20 +20,22 @@ import javax.swing.JPanel;
 import model.Coord;
 import model.Couleur;
 import model.Echiquier;
+import model.PieceIHM;
+import model.Pieces;
 import tools.ChessImageProvider;
+import tools.ChessPieceFactory;
 import utils.Observeur;
 import controler.controlerLocal.ChessGameControler;
  
 public class ChessGameGUI extends JFrame implements MouseListener, MouseMotionListener, Observeur {
   private static final int TAILLE_CASE = 75;
-private ChessGameControler controler;
-JLayeredPane layeredPane;
+  private ChessGameControler controler;
+  JLayeredPane layeredPane;
   JPanel chessBoard;
   JLabel chessPiece;
-  int xAdjustment;
-  int yAdjustment;
-private int xInit;
-private int yInit;
+ 
+  private int xInit;
+  private int yInit;
   
   private void addPiece(String name,Couleur color,Coord coord){
 	  addPiece(name,color,coord.x,coord.y);
@@ -41,6 +44,7 @@ private int yInit;
   private void addPiece(String name,Couleur color,int x,int y){
 	  
 	  int c = x+y*8;
+
 	  if(c>64){
 		  return;
 	  }
@@ -52,18 +56,15 @@ private int yInit;
   
   
   public ChessGameGUI(ChessGameControler c){
+	  
 	  this.setControler(c);
-	  this.setDefaultCloseOperation(DISPOSE_ON_CLOSE );
-	  this.pack();
-	  this.setResizable(true);
-	  this.setLocationRelativeTo( null );
-  Dimension boardSize = new Dimension(600, 600);
+	  
+	  Dimension boardSize = new Dimension(600, 600);
  
   //  Use a Layered Pane for this this application
- layeredPane = new JLayeredPane();
+  layeredPane = new JLayeredPane();
   getContentPane().add(layeredPane);
   layeredPane.setPreferredSize(boardSize);
-  this.setVisible(true);
   layeredPane.addMouseListener(this);
   layeredPane.addMouseMotionListener(this);
 
@@ -87,31 +88,37 @@ private int yInit;
   }
    
   initialise();
+  this.setDefaultCloseOperation(DISPOSE_ON_CLOSE );
+  this.pack();
+  this.setResizable(true);
+  this.setLocationRelativeTo( null );
+  this.setVisible(true);
   
   }
  
   private void initialise() {
-	  addPiece("Cavalier",Couleur.BLANC,1,0);
-	  addPiece("Cavalier",Couleur.BLANC,6,0);
-	  addPiece("Cavalier",Couleur.NOIR,1,7);
-	  addPiece("Cavalier",Couleur.NOIR,6,7);
-	  addPiece("Fou",Couleur.BLANC,2,0);
-	  addPiece("Fou",Couleur.BLANC,5,0);
-	  addPiece("Fou",Couleur.NOIR,2,7);
-	  addPiece("Fou",Couleur.NOIR,5,7);
-	  addPiece("Reine",Couleur.BLANC,3,0);
-	  addPiece("Reine",Couleur.NOIR,3,7);
-	  addPiece("Roi",Couleur.NOIR,4,7);
-	  addPiece("Roi",Couleur.BLANC,4,0);
-	  addPiece("Tour",Couleur.BLANC,0,0);
-	  addPiece("Tour",Couleur.BLANC,7,0);
-	  addPiece("Tour",Couleur.NOIR,0,7);
-	  addPiece("Tour",Couleur.NOIR,7,7);
+	 
+	  addPiece("Cavalier",Couleur.BLANC,1,7);
+	  addPiece("Cavalier",Couleur.BLANC,6,7);
+	  addPiece("Cavalier",Couleur.NOIR,1,0);
+	  addPiece("Cavalier",Couleur.NOIR,6,0);
+	  addPiece("Fou",Couleur.BLANC,2,7);
+	  addPiece("Fou",Couleur.BLANC,5,7);
+	  addPiece("Fou",Couleur.NOIR,2,0);
+	  addPiece("Fou",Couleur.NOIR,5,0);
+	  addPiece("Reine",Couleur.BLANC,3,7);
+	  addPiece("Reine",Couleur.NOIR,3,0);
+	  addPiece("Roi",Couleur.NOIR,4,0);
+	  addPiece("Roi",Couleur.BLANC,4,7);
+	  addPiece("Tour",Couleur.BLANC,0,7);
+	  addPiece("Tour",Couleur.BLANC,7,7);
+	  addPiece("Tour",Couleur.NOIR,0,0);
+	  addPiece("Tour",Couleur.NOIR,7,0);
 
 	  int r;
 	  for(r=0;r<=7;r++){
-		  addPiece("Pion",Couleur.BLANC,r,1);
-		  addPiece("Pion",Couleur.NOIR,r,6);
+		  addPiece("Pion",Couleur.BLANC,r,6);
+		  addPiece("Pion",Couleur.NOIR,r,1);
 	  }
 	
 }
@@ -124,9 +131,7 @@ public void mousePressed(MouseEvent e){
   if (c instanceof JPanel) 
   return;
  
-  Point parentLocation = c.getParent().getLocation();
-  xAdjustment = parentLocation.x - e.getX();
-  yAdjustment = parentLocation.y - e.getY();
+  
   chessPiece = (JLabel)c;
   xInit = e.getX();
   yInit= e.getY();
@@ -171,7 +176,6 @@ public void mousePressed(MouseEvent e){
   
   
  
-  Point parentLocation = c.getParent().getLocation();
   int xEnd = e.getX();
   int yEnd = e.getY();
 		  
@@ -180,7 +184,6 @@ public void mousePressed(MouseEvent e){
   
   
  
-  //System.out.println("Adjsustement x=" +xAdjustment+ " y="+yAdjustment );
    
   Coord initCoord=new Coord((int)Math.floor(xInit/TAILLE_CASE),(int)Math.floor(yInit/TAILLE_CASE));
 Coord finalCoord = new Coord((int)Math.floor(xEnd/TAILLE_CASE),(int)Math.floor(yEnd/TAILLE_CASE));
@@ -207,22 +210,27 @@ controler.move(initCoord, finalCoord);
  
 @Override
 	public void update(Echiquier e) {
-	//System.out.println("update");
-	/*	List<PieceIHM> list_pieces = e.getPiecesIHM();
-		chessBoard.removeAll();
+		List<PieceIHM> list_pieces = e.getPiecesIHM();
+		
+		for(int i = 0;i<chessBoard.getComponents().length;i++){
+			JPanel c = (JPanel)chessBoard.getComponent(i);
+			c.removeAll();
+			c.validate();
+			c.repaint();
+		}
 		for(PieceIHM p:list_pieces){
 				List<Coord> allcoord = p.getList();
 				for(Coord coord:allcoord){
 					addPiece(p.getTypePiece(),p.getCouleur(),coord);
 				}
-		}*/
+		}
 	}
 
-public ChessGameControler getControler() {
-	return controler;
-}
+	public ChessGameControler getControler() {
+		return controler;
+	}
 
-public void setControler(ChessGameControler controler) {
-	this.controler = controler;
-}
+	public void setControler(ChessGameControler controler) {
+		this.controler = controler;
+	}
 }

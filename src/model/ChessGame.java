@@ -23,22 +23,20 @@ public class ChessGame extends Observable {
 		// Verifie si mouvement possible
 		boolean mouvementPossible = false;
 		
-		if((echiquierCourant.isMoveLegal(xInit, yInit, xFinal, yFinal))
-			&&(echiquierCourant.isMoveOk(xInit, yInit, xFinal, yFinal))){
+		//MAGIE NOIRE
+		boolean move_ok=echiquierCourant.isMoveOk(xInit, yInit, xFinal, yFinal);
+		
+		if((echiquierCourant.isMoveLegal(xInit, yInit, xFinal, yFinal))&& move_ok){
 			
 			// Effectue le mouvement si possible
 			mouvementPossible = echiquierCourant.move(xInit, yInit, xFinal, yFinal);
-			//System.out.println("mouvement legal");
-			if(mouvementPossible){
-				// Changement de joueur
-				//System.out.println("on bouge");
 
+			if(mouvementPossible){				
+				// Changement de joueur
 				echiquierCourant.switchJoueur();
 				mouvementPossible = true;
 			}
 		}
-		//System.out.println("on notify");
-		//System.out.println(mouvementPossible);
 		 _notify(echiquierCourant);
 		return mouvementPossible;
 	}
