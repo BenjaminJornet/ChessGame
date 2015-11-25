@@ -192,7 +192,7 @@ Coord finalCoord = new Coord((int)Math.floor(xEnd/TAILLE_CASE),(int)Math.floor(y
 controler.move(initCoord, finalCoord);
   
  
-  chessPiece.setVisible(true);
+ // chessPiece.setVisible(true);
   }
  
   public void mouseClicked(MouseEvent e) {
@@ -209,8 +209,7 @@ controler.move(initCoord, finalCoord);
   }
  
 @Override
-	public void update(Echiquier e) {
-		List<PieceIHM> list_pieces = e.getPiecesIHM();
+	public void update(List<PieceIHM> list_pieces) {
 		
 		for(int i = 0;i<chessBoard.getComponents().length;i++){
 			JPanel c = (JPanel)chessBoard.getComponent(i);
@@ -224,10 +223,6 @@ controler.move(initCoord, finalCoord);
 					addPiece(p.getTypePiece(),p.getCouleur(),coord);
 				}
 		}
-	}
-
-	public ChessGameControler getControler() {
-		return controler;
 	}
 
 	public void setControler(ChessGameControler controler) {

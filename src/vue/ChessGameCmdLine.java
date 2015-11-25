@@ -1,8 +1,11 @@
 package vue;
 
+import java.util.List;
+
 import model.ChessGame;
 import model.Coord;
 import model.Echiquier;
+import model.PieceIHM;
 import utils.Observeur;
 import controler.controlerLocal.ChessGameControler;
 
@@ -52,7 +55,7 @@ public class ChessGameCmdLine implements Observeur{
 	}
 
 	@Override
-	public void update(Echiquier c) {
+	public void update(List<PieceIHM> list_pieces) {
 		// TODO Auto-generated method stub
 		
 		/* (non-Javadoc)
