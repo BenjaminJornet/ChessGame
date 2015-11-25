@@ -47,10 +47,6 @@ public class Client {
 				}
 			}};
 			t.start();
-
-
-
 	}
-
 
 }
