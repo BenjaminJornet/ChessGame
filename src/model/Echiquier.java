@@ -377,7 +377,7 @@ public class Echiquier extends Observable{
 
 	public static void main(String[] args) {
 		Echiquier e = new Echiquier();
-			//System.out.println(e.getPiecesIHM());
+		System.out.println(e.getPiecesIHM());
 		}
 
 }

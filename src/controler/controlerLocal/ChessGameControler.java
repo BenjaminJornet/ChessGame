@@ -4,10 +4,10 @@ package controler.controlerLocal;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import our.sockets.SocketControler;
 import model.ChessGame;
 import model.Coord;
 import model.Couleur;
-import regex.SocketControler;
 import utils.Observeur2;
 
 

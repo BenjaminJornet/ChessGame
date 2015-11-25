@@ -1,15 +1,14 @@
-package regex;
+package our.sockets;
 
 import java.io.IOException;
 
-import our.sockets.Client;
 import controler.controlerLocal.ChessGameControler;
 
 public class SocketControler {
 	Client client;
 
-	public SocketControler(){
-		client = new Client("127.0.0.1",2009);
+	public SocketControler(SocketPart c){
+		client = (Client) c;
 		
 	}
 

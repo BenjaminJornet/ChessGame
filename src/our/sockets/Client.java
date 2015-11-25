@@ -5,7 +5,6 @@ import java.io.InputStreamReader;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import model.ChessGame;
 import utils.Observable2;
 
 
@@ -14,7 +13,7 @@ public class Client extends Observable2 {
 	public static Socket socket = null;
 	public static Thread t;
 	protected String message = "";
-	private ChessGame cg;
+
 	public void sendMessage(String message) throws IOException
 	{
 		socketToolBox.send(socket,message);

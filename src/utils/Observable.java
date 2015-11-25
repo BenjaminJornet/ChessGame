@@ -3,11 +3,9 @@ package utils;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.ChessGame;
-import model.Echiquier;
 import model.PieceIHM;
 
-public class Observable{ 
+public abstract class Observable{ 
 	
 	private static ArrayList<Observeur> observeurs = new ArrayList<Observeur>();
 	

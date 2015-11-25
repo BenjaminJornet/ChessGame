@@ -1,14 +1,17 @@
 package utils;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import model.ChessGame;
-import model.Echiquier;
-import model.PieceIHM;
+import our.sockets.SocketPart;
 
-public class Observable2{ 
+public abstract class Observable2 extends SocketPart{ 
 	
+	
+	public Observable2(){}
+	public Observable2(final String IP, int port) {
+		super(IP, port);
+	}
+
 	private static ArrayList<Observeur2> observeurs = new ArrayList<Observeur2>();
 	public void notify(String message) {
 		int i=0;

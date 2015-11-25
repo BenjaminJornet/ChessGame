@@ -2,9 +2,7 @@ package vue;
 
 import java.util.List;
 
-import model.ChessGame;
 import model.Coord;
-import model.Echiquier;
 import model.PieceIHM;
 import utils.Observeur;
 import controler.controlerLocal.ChessGameControler;

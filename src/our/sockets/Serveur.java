@@ -7,7 +7,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-public class Serveur {
+public class Serveur extends SocketPart{
 	private static ServerSocket ss = null;
 	private static Thread t;
 	private String message;
@@ -21,7 +21,10 @@ public class Serveur {
 		}
 	}
 
-	Serveur(final int port) {
+	Serveur(final String IP,final int port) {
+		new Serveur(port);
+	}
+	Serveur(final int port){
 		t = new Thread() {
 
 			public void run() {
