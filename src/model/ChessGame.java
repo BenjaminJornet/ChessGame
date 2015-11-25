@@ -37,6 +37,7 @@ public class ChessGame extends Observable {
 				mouvementPossible = true;
 			}
 		}
+		
 		 notify(echiquierCourant.getPiecesIHM());
 		return mouvementPossible;
 	}
@@ -51,5 +52,11 @@ public class ChessGame extends Observable {
 	
 	public Couleur getColorCurrentPlayer(){
 		return this.echiquierCourant.getColorCurrentPlayer();	
+	}
+
+
+	public void read(String message) {
+		// TODO Auto-generated method stub
+		
 	}
 }

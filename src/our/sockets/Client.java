@@ -5,11 +5,16 @@ import java.io.InputStreamReader;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import model.ChessGame;
+import utils.Observable2;
 
-public class Client {
+
+public class Client extends Observable2 {
 
 	public static Socket socket = null;
 	public static Thread t;
+	protected String message = "";
+	private ChessGame cg;
 	public void sendMessage(String message) throws IOException
 	{
 		socketToolBox.send(socket,message);
@@ -19,29 +24,36 @@ public class Client {
 			e.printStackTrace();
 		}
 	}
+	public String readMessage(){
+		return message;
+	}
 	
-	Client() {
+	public Client(final String IP,final int Port) {
+		final Client cc = this;
 
 		t = new Thread(){
 			public void run(){
 				try {
 
 					System.out.println("Demande de connexion");
-					socket = new Socket("127.0.0.1",2009);
+					socket = new Socket(IP,Port);
 
 
-					sendMessage("Vous êtes connecté zéro");
+				/*	sendMessage("Vous êtes connecté zéro");
 					
 					sendMessage("Vous êtes connecté un");
 									
-					sendMessage("Vous êtes connecté deux");
+					sendMessage("Vous êtes connecté deux");*/
+					
 					while(true){
 						BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
 
 						if(in!=null){
 							if(in.ready()){
-								System.out.println(in.readLine());
+								message = in.readLine();
+								System.out.println(message);
+								cc.notify(message);
 								
 							}
 
@@ -53,11 +65,14 @@ public class Client {
 				} catch (IOException e) {
 					System.err.println("Aucun serveur à l'écoute du port "+socket.getLocalPort());
 				}
-			}};
+			}
+
+			};
 			t.start();
 	}
 	public static void main(String[] args){
-		new Client();
+		new Client("127.0.0.1",2009);
 	}
-
+	
+	
 }
