@@ -31,7 +31,6 @@ public class Serveur {
 								System.out.println("input stream");
 								System.out.println(in.readLine());
 								System.out.println("end read");
-								//in.close();
 							}
 						}
 						if(out!=null){
