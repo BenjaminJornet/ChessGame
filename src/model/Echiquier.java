@@ -55,9 +55,11 @@ public class Echiquier extends Observable{
 		if (this.jeuCourant == this.jeuBlanc) {
 			this.jeuCourant = this.jeuNoir;
 			this.jeuOppose = this.jeuBlanc;
+			System.out.println("Jeu courant est le jeu Noir");
 		} else {
 			this.jeuCourant = this.jeuBlanc;
 			this.jeuOppose = this.jeuNoir;
+			System.out.println("Jeu courant est le jeu Blanc");
 		}
 	}
 
@@ -218,7 +220,6 @@ public class Echiquier extends Observable{
 				for (int i = yInit + 1; i <= yFinal; i++) {
 					if (jeuBlanc.isPieceHere(xInit, i) || jeuNoir.isPieceHere(xInit, i)) {
 						pieceOnTrajectCoord = new Coord(xInit,i);
-						System.out.println(pieceOnTrajectCoord);
 						break;
 					}
 				}
@@ -373,11 +374,5 @@ public class Echiquier extends Observable{
 		// TODO Auto-generated method stub
 		return false;
 	}
-
-
-	public static void main(String[] args) {
-		Echiquier e = new Echiquier();
-		System.out.println(e.getPiecesIHM());
-		}
 
 }

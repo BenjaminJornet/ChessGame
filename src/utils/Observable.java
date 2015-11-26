@@ -12,7 +12,6 @@ public abstract class Observable{
 	public void notify(List<PieceIHM> list){
 		int i=0;
 		for(i=0;i<observeurs.size();i++){
-			System.out.println("dans la boucle de notify de Observable");
 			observeurs.get(i).update(list);
 		}
 		

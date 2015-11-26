@@ -1,20 +1,22 @@
 package our.sockets;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-
 public class Client extends SocketPart {
 
-	public static Socket socket = null;
-	public static Thread t;
+	//
+	private Socket socket = null;
+	private Client cc;
+	private static Thread t;
 	
 	@Override
-	public void sendMessage(String message) throws IOException
-	{
-		socketToolBox.send(socket,message);
+	public void sendMessage(String message) throws IOException {
+		socketToolBox.send(socket, message);
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
@@ -23,10 +25,11 @@ public class Client extends SocketPart {
 	}
 
 	public Client(final String IP,final int Port) {
-		final Client cc = this;
+		
+		cc=this;
+		t = new Thread() {
 
-		t = new Thread(){
-			public void run(){
+			public void run() {
 				try {
 
 					System.out.println("Demande de connexion");
@@ -44,10 +47,9 @@ public class Client extends SocketPart {
 						BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
 
-						if(in!=null){
-							if(in.ready()){
+						if(in != null) {
+							if(in.ready()) {
 								String message = in.readLine();
-								System.out.println(message);
 								cc.notify(message);
 
 							}
@@ -65,9 +67,5 @@ public class Client extends SocketPart {
 		};
 		t.start();
 	}
-	public static void main(String[] args){
-		new Client("127.0.0.1",2009);
-	}
-
 
 }

@@ -11,9 +11,7 @@ public class socketToolBox {
 		PrintWriter out = new PrintWriter(socket.getOutputStream());
 		out.println(message);
 		out.flush();
-
 		System.out.println("Socket send :"+message);
-
 	}
 
 }
