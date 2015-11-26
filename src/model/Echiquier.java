@@ -96,9 +96,9 @@ public class Echiquier extends Observable{
 	 */
 	public boolean isMoveOk(int xInit, int yInit, int xFinal, int yFinal) {
 		this.isMoveOk = false;
-
-		this.setMessage("KO : la position finale ne correspond pas à "
-				+ "algo de déplacement légal de la piece ");
+		this.setMessage("RAS");
+		System.out.println(xInit+","+yInit+"->"+xFinal+","+yFinal);
+		
 
 		//	s'il n'existe pas de piece du jeu courant aux coordonnées initiales --> false
 		this.isPieceToMoveOk = jeuCourant.isPieceHere(xInit, yInit)	;
@@ -107,7 +107,11 @@ public class Echiquier extends Observable{
 			this.setMessage("KO : c'est au tour de l'autre joueur");
 		}
 		else {
-			this.isMoveOk = isMoveLegal(xInit,  yInit,  xFinal,  yFinal);			
+			this.isMoveOk = isMoveLegal(xInit,  yInit,  xFinal,  yFinal);
+			if(!this.isMoveOk){
+				this.setMessage("KO : la position finale ne correspond pas à "
+						+ "algo de déplacement légal de la piece ");
+			}
 		}
 
 		return this.isMoveOk;

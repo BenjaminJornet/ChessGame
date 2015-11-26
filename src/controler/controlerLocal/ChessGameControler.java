@@ -33,6 +33,8 @@ public class ChessGameControler implements ChessGameControlers,Observeur2{
 		boolean move_possible = this.chessGame.move(initCoord.x, initCoord.y,finalCoord.x, finalCoord.y);
 		if(move_possible){
 			this.socketC.sendMove(initCoord.x,initCoord.y,finalCoord.x,finalCoord.y);
+		}else{
+			System.out.println("mouvement refuser");
 		}
 		return move_possible;
 	}
@@ -77,6 +79,8 @@ public class ChessGameControler implements ChessGameControlers,Observeur2{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		System.out.println(initCoord);
+		System.out.println(finalCoord);
 		this.move(initCoord, finalCoord);
 	}
 

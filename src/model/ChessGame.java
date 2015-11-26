@@ -25,8 +25,16 @@ public class ChessGame extends Observable {
 		
 		//MAGIE NOIRE
 		boolean move_ok=echiquierCourant.isMoveOk(xInit, yInit, xFinal, yFinal);
+		boolean move_legal = echiquierCourant.isMoveLegal(xInit, yInit, xFinal, yFinal);
 		
-		if((echiquierCourant.isMoveLegal(xInit, yInit, xFinal, yFinal))&& move_ok){
+		if(!move_ok){
+			System.out.println(echiquierCourant.getColorCurrentPlayer().toString());
+			System.out.println(echiquierCourant.getMessage());
+			}
+		
+		System.out.println("move ok: "+move_ok+"\nmove legal: "+move_legal);
+		
+		if(move_legal && move_ok){
 			
 			// Effectue le mouvement si possible
 			mouvementPossible = echiquierCourant.move(xInit, yInit, xFinal, yFinal);
@@ -34,7 +42,8 @@ public class ChessGame extends Observable {
 			if(mouvementPossible){				
 				// Changement de joueur
 				echiquierCourant.switchJoueur();
-				mouvementPossible = true;
+			}else{
+				System.out.println("mouvement impossible");
 			}
 		}
 		//System.out.println("echiquierCourantgetPiecesIHM() : " + echiquierCourant.getPiecesIHM());

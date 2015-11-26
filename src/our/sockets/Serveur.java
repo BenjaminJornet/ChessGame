@@ -14,10 +14,10 @@ public class Serveur extends SocketPart{
 	private Serveur cc;
 	private static Thread t;
 
-	@Override
+	/*@Override
 	public void sendMessage(String message) throws IOException {
 		socketToolBox.send(socket, message);
-	}
+	}*/
 
 	public Serveur(final int port){
 		
