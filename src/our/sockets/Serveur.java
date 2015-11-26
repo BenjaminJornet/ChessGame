@@ -17,11 +17,6 @@ public class Serveur extends SocketPart{
 	@Override
 	public void sendMessage(String message) throws IOException {
 		socketToolBox.send(socket, message);
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 	}
 
 	public Serveur(final int port){
