@@ -15,7 +15,10 @@ public abstract class SocketPart extends Observable2 {
 	protected static Thread t;
 	
 	public void sendMessage(String message) throws IOException{	
-
+		if(socket==null){
+			System.err.println("socket not linked");
+			return;
+		}
 		PrintWriter out = new PrintWriter(socket.getOutputStream());
 		out.println(message);
 		out.flush();

@@ -11,11 +11,6 @@ public class Client extends SocketPart {
 
 	//
 	private Client cc;
-		
-	/*@Override
-	public void sendMessage(String message) throws IOException {
-		socketToolBox.send(socket, message);
-	}*/
 
 	public Client(final String IP,final int Port) {
 		
