@@ -10,7 +10,6 @@ public class Client extends SocketPart {
 
 	public static Socket socket = null;
 	public static Thread t;
-	protected String message = "";
 
 	public void sendMessage(String message) throws IOException
 	{
@@ -21,11 +20,7 @@ public class Client extends SocketPart {
 			e.printStackTrace();
 		}
 	}
-	@Override
-	public String readMessage(){
-		return message;
-	}
-	
+
 	public Client(final String IP,final int Port) {
 		final Client cc = this;
 
@@ -38,22 +33,22 @@ public class Client extends SocketPart {
 					System.out.println("connexion entrante");
 
 
-				/*	sendMessage("Vous �tes connect� z�ro");
-					
+					/*	sendMessage("Vous �tes connect� z�ro");
+
 					sendMessage("Vous �tes connect� un");
-									
+
 					sendMessage("Vous �tes connect� deux");*/
-					
+
 					while(true){
 						BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
 
 						if(in!=null){
 							if(in.ready()){
-								message = in.readLine();
+								String message = in.readLine();
 								System.out.println(message);
 								cc.notify(message);
-								
+
 							}
 
 						}
@@ -66,12 +61,12 @@ public class Client extends SocketPart {
 				}
 			}
 
-			};
-			t.start();
+		};
+		t.start();
 	}
 	public static void main(String[] args){
 		new Client("127.0.0.1",2009);
 	}
-	
-	
+
+
 }

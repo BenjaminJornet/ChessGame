@@ -25,11 +25,9 @@ public class SocketControler {
 			e.printStackTrace();
 		}
 		
+		
 	}
-	public void read(){
-		client.readMessage();
-	}
-
+	
 	public void add(ChessGameControler c) {
 		client.addObserver(c);
 		
