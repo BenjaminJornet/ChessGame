@@ -74,8 +74,6 @@ public class ChessGameControler implements ChessGameControlers,Observeur2{
 		
 		try {			
 			convert(message,initCoord,finalCoord);
-			System.out.println("initCoord : " + initCoord);
-			System.out.println("finalCoord : " + finalCoord);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

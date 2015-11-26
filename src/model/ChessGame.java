@@ -37,8 +37,8 @@ public class ChessGame extends Observable {
 				mouvementPossible = true;
 			}
 		}
-		System.out.println("echiquierCourantgetPiecesIHM() : " + echiquierCourant.getPiecesIHM());
-		 notify(echiquierCourant.getPiecesIHM());
+		//System.out.println("echiquierCourantgetPiecesIHM() : " + echiquierCourant.getPiecesIHM());
+		notify(echiquierCourant.getPiecesIHM());
 		return mouvementPossible;
 	}
 	

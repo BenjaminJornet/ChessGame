@@ -138,13 +138,6 @@ public class ChessGameGUI extends JFrame implements MouseListener, MouseMotionLi
 
 	public void mouseDragged(MouseEvent me) {
 		if (chessPiece == null) return;
-
-
-
-		// controler.move(new Coord(xStart,yStart),new  Coord(xEnd,yEnd));
-		////System.out.println("From " + me.getX() + "," + me.getY()+ " to "+ (me.getX() + xAdjustment)+", " + (me.getY() + yAdjustment));
-		//chessPiece.setLocation(me.getX() + xAdjustment, me.getY() + yAdjustment);
-
 	}
 
 	//Drop the chess piece back onto the chess board
@@ -154,39 +147,14 @@ public class ChessGameGUI extends JFrame implements MouseListener, MouseMotionLi
 		if(chessPiece == null) return;
 
 		chessPiece.setVisible(false);
-		//Component c =  chessBoard.findComponentAt(e.getX(), e.getY());
-
-
-		/* if (c instanceof JLabel){
-  Container parent = c.getParent();
-  parent.remove(0);
-  parent.add( chessPiece );
-  }
-  else {
-  Container parent = (Container)c;
-  parent.add( chessPiece );
-  }*/
-		//Component c =  chessBoard.findComponentAt(e.getX(), e.getY());
-
-
 
 		int xEnd = e.getX();
 		int yEnd = e.getY();
 
-
-
-
-
-
-
 		Coord initCoord=new Coord((int)Math.floor(xInit/TAILLE_CASE),(int)Math.floor(yInit/TAILLE_CASE));
 		Coord finalCoord = new Coord((int)Math.floor(xEnd/TAILLE_CASE),(int)Math.floor(yEnd/TAILLE_CASE));
-		//System.out.println(initCoord);
-		//System.out.println(finalCoord);
+
 		controler.move(initCoord, finalCoord);
-
-
-		// chessPiece.setVisible(true);
 	}
 
 	public void mouseClicked(MouseEvent e) {
@@ -205,22 +173,20 @@ public class ChessGameGUI extends JFrame implements MouseListener, MouseMotionLi
 	@Override
 	public void update(List<PieceIHM> list_pieces) {
 
-		System.out.println("On rafraichit l'echiquier");
-		
 		for(int i = 0;i<chessBoard.getComponents().length;i++){
 			JPanel c = (JPanel)chessBoard.getComponent(i);
 			c.removeAll();
 			c.validate();
 			c.repaint();
 		}
-		System.out.println("list_pieces : " + list_pieces);
-		
+
 		for(PieceIHM p:list_pieces){
 			List<Coord> allcoord = p.getList();
 			for(Coord coord:allcoord){
 				addPiece(p.getTypePiece(),p.getCouleur(),coord);
 			}
 		}
+		this.revalidate();
 		this.repaint();
 	}
 
