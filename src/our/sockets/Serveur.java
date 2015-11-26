@@ -8,10 +8,9 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class Serveur extends SocketPart{
-	private SocketPart cc=this;
+	private Serveur cc=this;
 	private static ServerSocket ss = null;
 	private static Thread t;
-	private String message;
 
 	public void sendMessage(Socket socket, String message) throws IOException {
 		socketToolBox.send(socket, message);
@@ -45,7 +44,7 @@ public class Serveur extends SocketPart{
 
 							if (in.ready()) {
 								System.out.println("input stream");
-								message = in.readLine();
+								String message = in.readLine();
 								cc.notify(message);
 							}
 						}
