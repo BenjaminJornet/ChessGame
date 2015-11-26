@@ -68,11 +68,14 @@ public class ChessGameControler implements ChessGameControlers,Observeur2{
 
 	@Override
 	public void update(String message) {
+		System.out.println("on recoit le message :" + message);
 		Coord initCoord = new Coord(-1,-1);
 		Coord finalCoord= new Coord(-1,-1);
 		
-		try {
+		try {			
 			convert(message,initCoord,finalCoord);
+			System.out.println("initCoord : " + initCoord);
+			System.out.println("finalCoord : " + finalCoord);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -38,11 +38,11 @@ public class Client extends Observable2 {
 					socket = new Socket(IP,Port);
 
 
-				/*	sendMessage("Vous êtes connecté zéro");
+				/*	sendMessage("Vous ï¿½tes connectï¿½ zï¿½ro");
 					
-					sendMessage("Vous êtes connecté un");
+					sendMessage("Vous ï¿½tes connectï¿½ un");
 									
-					sendMessage("Vous êtes connecté deux");*/
+					sendMessage("Vous ï¿½tes connectï¿½ deux");*/
 					
 					while(true){
 						BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -60,9 +60,9 @@ public class Client extends Observable2 {
 					}
 
 				} catch (UnknownHostException e) {
-					System.err.println("Impossible de se connecter à l'adresse "+socket.getLocalAddress());
+					System.err.println("Impossible de se connecter ï¿½ l'adresse "+socket.getLocalAddress());
 				} catch (IOException e) {
-					System.err.println("Aucun serveur à l'écoute du port "+socket.getLocalPort());
+					System.err.println("Aucun serveur ï¿½ l'ï¿½coute du port "+socket.getLocalPort());
 				}
 			}
 

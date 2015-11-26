@@ -205,18 +205,23 @@ public class ChessGameGUI extends JFrame implements MouseListener, MouseMotionLi
 	@Override
 	public void update(List<PieceIHM> list_pieces) {
 
+		System.out.println("On rafraichit l'echiquier");
+		
 		for(int i = 0;i<chessBoard.getComponents().length;i++){
 			JPanel c = (JPanel)chessBoard.getComponent(i);
 			c.removeAll();
 			c.validate();
 			c.repaint();
 		}
+		System.out.println("list_pieces : " + list_pieces);
+		
 		for(PieceIHM p:list_pieces){
 			List<Coord> allcoord = p.getList();
 			for(Coord coord:allcoord){
 				addPiece(p.getTypePiece(),p.getCouleur(),coord);
 			}
 		}
+		this.repaint();
 	}
 
 	public void setControler(ChessGameControler controler) {

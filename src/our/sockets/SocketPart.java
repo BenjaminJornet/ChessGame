@@ -1,9 +1,19 @@
 package our.sockets;
 
-public abstract class SocketPart {
-	public SocketPart() {
-	}
-	public SocketPart(final String IP,int port){
+import java.io.IOException;
+
+import utils.Observable2;
+
+public abstract class SocketPart extends Observable2 {
+
+	public void sendMessage(String message) throws IOException{
+		// TODO Auto-generated method stub
 		
 	}
+
+	public void readMessage() {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }

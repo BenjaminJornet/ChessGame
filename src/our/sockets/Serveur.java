@@ -8,6 +8,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class Serveur extends SocketPart{
+	private SocketPart cc=this;
 	private static ServerSocket ss = null;
 	private static Thread t;
 	private String message;
@@ -24,14 +25,14 @@ public class Serveur extends SocketPart{
 	Serveur(final String IP,final int port) {
 		new Serveur(port);
 	}
-	Serveur(final int port){
+	public Serveur(final int port){
 		t = new Thread() {
 
 			public void run() {
 
 				try {
 					ss = new ServerSocket(port);
-					System.out.println("Le serveur est à l'écoute du port "
+					System.out.println("Le serveur est ï¿½ l'ï¿½coute du port "
 							+ ss.getLocalPort());
 					Socket socketduserveur = ss.accept();
 
@@ -44,9 +45,8 @@ public class Serveur extends SocketPart{
 
 							if (in.ready()) {
 								System.out.println("input stream");
-								System.out.println(in.readLine());
-								System.out.println("end read");
-								sendMessage(socketduserveur, message);
+								message = in.readLine();
+								cc.notify(message);
 							}
 						}
 
@@ -54,11 +54,11 @@ public class Serveur extends SocketPart{
 
 				} catch (UnknownHostException e) {
 					System.err
-							.println("Impossible de se connecter à l'adresse "
+							.println("Impossible de se connecter ï¿½ l'adresse "
 									+ ss.getLocalSocketAddress());
 				} catch (IOException e) {
 					System.err.println("Le port " + ss.getLocalPort()
-							+ " est déjà utilisé !");
+							+ " est dï¿½jï¿½ utilisï¿½ !");
 				}
 
 			}

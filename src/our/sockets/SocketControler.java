@@ -5,10 +5,10 @@ import java.io.IOException;
 import controler.controlerLocal.ChessGameControler;
 
 public class SocketControler {
-	Client client;
+	SocketPart client;
 
 	public SocketControler(SocketPart c){
-		client = (Client) c;
+		client = c;
 		
 	}
 
