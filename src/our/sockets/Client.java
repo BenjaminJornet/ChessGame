@@ -10,7 +10,8 @@ public class Client extends SocketPart {
 
 	public static Socket socket = null;
 	public static Thread t;
-
+	
+	@Override
 	public void sendMessage(String message) throws IOException
 	{
 		socketToolBox.send(socket,message);

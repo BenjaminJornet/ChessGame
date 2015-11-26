@@ -9,10 +9,12 @@ import java.net.UnknownHostException;
 
 public class Serveur extends SocketPart{
 	private Serveur cc=this;
-	private static ServerSocket ss = null;
+	private ServerSocket ss = null;
+	private Socket socket = null;
 	private static Thread t;
 
-	public void sendMessage(Socket socket, String message) throws IOException {
+	@Override
+	public void sendMessage(String message) throws IOException {
 		socketToolBox.send(socket, message);
 		try {
 			Thread.sleep(1000);
@@ -33,12 +35,12 @@ public class Serveur extends SocketPart{
 					ss = new ServerSocket(port);
 					System.out.println("Le serveur est � l'�coute du port "
 							+ ss.getLocalPort());
-					Socket socketduserveur = ss.accept();
+					socket = ss.accept();
 
 					while (true) {
 						BufferedReader in = new BufferedReader(
 								new InputStreamReader(
-										socketduserveur.getInputStream()));
+										socket.getInputStream()));
 
 						if (in != null) {
 
