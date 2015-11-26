@@ -5,10 +5,8 @@ import java.io.InputStreamReader;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import utils.Observable2;
 
-
-public class Client extends Observable2 {
+public class Client extends SocketPart {
 
 	public static Socket socket = null;
 	public static Thread t;
@@ -23,6 +21,7 @@ public class Client extends Observable2 {
 			e.printStackTrace();
 		}
 	}
+	@Override
 	public String readMessage(){
 		return message;
 	}
@@ -36,6 +35,7 @@ public class Client extends Observable2 {
 
 					System.out.println("Demande de connexion");
 					socket = new Socket(IP,Port);
+					System.out.println("connexion entrante");
 
 
 				/*	sendMessage("Vous �tes connect� z�ro");

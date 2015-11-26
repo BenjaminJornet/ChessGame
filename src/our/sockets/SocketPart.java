@@ -11,9 +11,10 @@ public abstract class SocketPart extends Observable2 {
 		
 	}
 
-	public void readMessage() {
-		// TODO Auto-generated method stub
-		
+	public String readMessage() {
+		return "";		
 	}
+
+	
 	
 }

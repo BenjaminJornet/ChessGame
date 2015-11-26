@@ -2,10 +2,7 @@ package utils;
 
 import java.util.ArrayList;
 
-import our.sockets.SocketPart;
-
 public abstract class Observable2{ 
-	
 	
 	public Observable2(){}
 	
