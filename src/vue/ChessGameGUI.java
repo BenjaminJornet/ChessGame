@@ -51,11 +51,11 @@ public class ChessGameGUI extends JFrame implements MouseListener, MouseMotionLi
 	}
 
 
-	public ChessGameGUI(ChessGameControler c){
+	public ChessGameGUI(ChessGameControler c,String title, int width,int height){
 
 		this.setControler(c);
 
-		Dimension boardSize = new Dimension(600, 600);
+		Dimension boardSize = new Dimension(width, height);
 
 		//  Use a Layered Pane for this this application
 		layeredPane = new JLayeredPane();
@@ -84,6 +84,7 @@ public class ChessGameGUI extends JFrame implements MouseListener, MouseMotionLi
 		}
 
 		initialise();
+		this.setTitle(title);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE );
 		this.pack();
 		this.setResizable(true);

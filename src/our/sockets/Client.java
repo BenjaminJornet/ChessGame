@@ -3,6 +3,7 @@ package our.sockets;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -12,7 +13,7 @@ public class Client extends SocketPart {
 	//
 	private Client cc;
 
-	public Client(final String IP,final int Port) {
+	public Client(final InetAddress inetAddress,final int Port) {
 		
 		cc=this;
 		t = new Thread() {
@@ -21,7 +22,7 @@ public class Client extends SocketPart {
 				try {
 
 					System.out.println("Demande de connexion");
-					socket = new Socket(IP,Port);
+					socket = new Socket(inetAddress,Port);
 					System.out.println("connexion entrante");
 
 

@@ -15,7 +15,7 @@ public class LauncherGUINoir {
 		SocketControler sc=new SocketControler(s);
 		ChessGameControler controler = new ChessGameControler(cg,sc);
 
-		ChessGameGUI frame = new ChessGameGUI(controler);
+		ChessGameGUI frame = new ChessGameGUI(controler,"Jeu Noir",600,600);
 		cg.addObserver(frame);
 	}
 

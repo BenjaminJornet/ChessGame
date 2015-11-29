@@ -81,7 +81,7 @@ public class ChessGameControler implements ChessGameControlers,Observeur2{
 		}
 		System.out.println(initCoord);
 		System.out.println(finalCoord);
-		this.move(initCoord, finalCoord);
+		this.chessGame.move(initCoord.x,initCoord.y, finalCoord.x,finalCoord.y);
 	}
 
 
