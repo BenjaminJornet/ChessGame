@@ -13,7 +13,7 @@ public class Client extends SocketPart {
 	//
 	private Client cc;
 
-	public Client(final InetAddress inetAddress,final int Port) {
+	public Client(final String string,final int Port) {
 		
 		cc=this;
 		t = new Thread() {
@@ -22,7 +22,7 @@ public class Client extends SocketPart {
 				try {
 
 					System.out.println("Demande de connexion");
-					socket = new Socket(inetAddress,Port);
+					socket = new Socket(string,Port);
 					System.out.println("connexion entrante");
 
 

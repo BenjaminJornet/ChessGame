@@ -1,8 +1,5 @@
 package vue;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-
 import model.ChessGame;
 import our.sockets.Client;
 import our.sockets.SocketControler;
@@ -13,20 +10,15 @@ public class LauncherGUIBlanc {
 	public static void main(String[]args){
 		ChessGame cg = new ChessGame();
 
-		SocketPart s = null;
-		try {
-			s = new Client(InetAddress.getLocalHost(),2009);
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		}
+		String IP = "192.168.0.25";
+		SocketPart s = new Client(IP,2009);
 
-		if(s!=null){
-			SocketControler sc=new SocketControler(s);
-			ChessGameControler controler = new ChessGameControler(cg,sc);
+		SocketControler sc=new SocketControler(s);
+		ChessGameControler controler = new ChessGameControler(cg,sc);
 
-			ChessGameGUI frame = new ChessGameGUI(controler,"Jeu Blanc",600,600);
-			cg.addObserver(frame);
-		}
+		ChessGameGUI frame = new ChessGameGUI(controler,"Jeu Blanc",600,600);
+		cg.addObserver(frame);
+
 	}
 	public void testSocket(Client s){
 		s.notify("(0,6)->(0,5)");
