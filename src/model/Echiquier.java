@@ -2,8 +2,7 @@ package model;
 
 import java.util.LinkedList;
 import java.util.List;
-
-import utils.Observable;
+import java.util.Observable;
 
 
 /**
@@ -97,7 +96,7 @@ public class Echiquier extends Observable{
 	public boolean isMoveOk(int xInit, int yInit, int xFinal, int yFinal) {
 		this.isMoveOk = false;
 		this.setMessage("RAS");
-		System.out.println(xInit+","+yInit+"->"+xFinal+","+yFinal);
+		//System.out.println(xInit+","+yInit+"->"+xFinal+","+yFinal);
 		
 
 		//	s'il n'existe pas de piece du jeu courant aux coordonnées initiales --> false

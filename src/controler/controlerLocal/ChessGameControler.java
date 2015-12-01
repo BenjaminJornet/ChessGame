@@ -1,25 +1,29 @@
 package controler.controlerLocal;
 
 
+import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import our.sockets.SocketControler;
 import model.ChessGame;
 import model.Coord;
 import model.Couleur;
-import utils.Observeur2;
+import our.sockets.SocketControler;
 
 
-public class ChessGameControler implements ChessGameControlers,Observeur2{
+public class ChessGameControler implements ChessGameControlers,Observer{
 
 
 	ChessGame chessGame;
 	private SocketControler socketC;
+	private Couleur couleurJeu;
 
-	public ChessGameControler(ChessGame c,SocketControler sc) {
+	public ChessGameControler(ChessGame c,SocketControler sc, Couleur couleur) {
 		this.chessGame = c;
 		this.socketC = sc;
+		this.couleurJeu = couleur;
 		sc.add(this);
 	}
 
@@ -29,6 +33,11 @@ public class ChessGameControler implements ChessGameControlers,Observeur2{
 	}
 
 	public boolean move(Coord initCoord, Coord finalCoord){		
+		//verifie si on joue la bonne couleur
+		
+		if(!couleurJeu.equals(chessGame.getColorCurrentPlayer())){
+			//return false;
+		}
 		// Verifie si mouvement possible
 		boolean move_possible = this.chessGame.move(initCoord.x, initCoord.y,finalCoord.x, finalCoord.y);
 		if(move_possible){
@@ -46,8 +55,11 @@ public class ChessGameControler implements ChessGameControlers,Observeur2{
 	public Couleur getColorCurrentPlayer(){
 		return this.chessGame.getColorCurrentPlayer();
 	}
-	
-	public static void convert(String line,Coord a,Coord b) throws Exception{
+	public ArrayList<Coord>getMouvementPossible(Coord c){
+		return this.chessGame.getCasesPossibles(c);
+	}
+
+	private static void convert(String line,Coord a,Coord b) throws Exception{
 
 		String pattern = "\\((\\d+),(\\d+)\\)\\s*->\\s*\\((\\d+),(\\d+)\\)";
 
@@ -65,25 +77,22 @@ public class ChessGameControler implements ChessGameControlers,Observeur2{
 			throw new Exception("NO MATCH");
 		}
 	}
-	
-	
+
 
 	@Override
-	public void update(String message) {
+	public void update(Observable arg0, Object message) {
 		System.out.println("on recoit le message :" + message);
 		Coord initCoord = new Coord(-1,-1);
 		Coord finalCoord= new Coord(-1,-1);
-		
+
 		try {			
-			convert(message,initCoord,finalCoord);
+			convert((String)message,initCoord,finalCoord);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		System.out.println(initCoord);
 		System.out.println(finalCoord);
 		this.chessGame.move(initCoord.x,initCoord.y, finalCoord.x,finalCoord.y);
+		
 	}
-
-
-	
 }

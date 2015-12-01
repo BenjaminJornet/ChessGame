@@ -1,10 +1,9 @@
 package vue;
 
-import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 import model.Coord;
-import model.PieceIHM;
-import utils.Observeur;
 import controler.controlerLocal.ChessGameControler;
 
 
@@ -14,7 +13,7 @@ import controler.controlerLocal.ChessGameControler;
  * Inspiration Jacques SARAYDARYAN, Adrien GUENARD *
  * 
  */
-public class ChessGameCmdLine implements Observeur{
+public class ChessGameCmdLine implements Observer{
 	
 	public   ChessGameCmdLine(ChessGameControler chessGameControler) {
 		
@@ -51,9 +50,8 @@ public class ChessGameCmdLine implements Observeur{
 		System.out.println(chessGameControler + "\n");
 		
 	}
-
 	@Override
-	public void update(List<PieceIHM> list_pieces) {
+	public void update(Observable arg0, Object list_pieces) {
 		// TODO Auto-generated method stub
 		
 		/* (non-Javadoc)

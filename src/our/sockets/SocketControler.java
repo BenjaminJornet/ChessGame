@@ -1,15 +1,15 @@
 package our.sockets;
 
 import java.io.IOException;
-
-import controler.controlerLocal.ChessGameControler;
+import java.util.Observer;
 
 public class SocketControler {
 	SocketPart client;
+	Thread t;
 
 	public SocketControler(SocketPart c){
 		client = c;
-		
+
 	}
 
 	public void sendMove(int x, int y, int x2, int y2) {
@@ -24,14 +24,15 @@ public class SocketControler {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		
+
+
 	}
-	
-	public void add(ChessGameControler c) {
+
+
+	public void add(Observer c) {
 		client.addObserver(c);
-		
+
 	}
-	
+
 
 }

@@ -1,6 +1,7 @@
 package vue;
 
 import model.ChessGame;
+import model.Couleur;
 import our.sockets.Client;
 import our.sockets.SocketControler;
 import our.sockets.SocketPart;
@@ -11,18 +12,14 @@ public class LauncherGUIBlanc {
 		ChessGame cg = new ChessGame();
 
 		String IP = "192.168.0.25";
+		IP="127.0.0.1";
 		SocketPart s = new Client(IP,2009);
 
 		SocketControler sc=new SocketControler(s);
-		ChessGameControler controler = new ChessGameControler(cg,sc);
+		ChessGameControler controler = new ChessGameControler(cg,sc,Couleur.BLANC);
 
 		ChessGameGUI frame = new ChessGameGUI(controler,"Jeu Blanc",600,600);
 		cg.addObserver(frame);
-
-	}
-	public void testSocket(Client s){
-		s.notify("(0,6)->(0,5)");
-		s.notify("(0,1)->(0,3)");
 
 	}
 
