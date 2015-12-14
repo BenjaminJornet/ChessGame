@@ -2,9 +2,9 @@ package vue;
 
 import model.ChessGame;
 import model.Couleur;
-import our.sockets.Serveur;
-import our.sockets.SocketControler;
-import our.sockets.SocketPart;
+import sockets.Serveur;
+import sockets.SocketControler;
+import sockets.SocketPart;
 import controler.controlerLocal.ChessGameControler;
 
 public class LauncherGUINoir {

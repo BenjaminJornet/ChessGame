@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 import model.ChessGame;
 import model.Coord;
 import model.Couleur;
-import our.sockets.SocketControler;
+import sockets.SocketControler;
 
 
 public class ChessGameControler implements ChessGameControlers,Observer{
@@ -36,7 +36,7 @@ public class ChessGameControler implements ChessGameControlers,Observer{
 		//verifie si on joue la bonne couleur
 		
 		if(!couleurJeu.equals(chessGame.getColorCurrentPlayer())){
-			//return false;
+			return false;
 		}
 		// Verifie si mouvement possible
 		boolean move_possible = this.chessGame.move(initCoord.x, initCoord.y,finalCoord.x, finalCoord.y);

@@ -2,9 +2,9 @@ package vue;
 
 import model.ChessGame;
 import model.Couleur;
-import our.sockets.Client;
-import our.sockets.SocketControler;
-import our.sockets.SocketPart;
+import sockets.Client;
+import sockets.SocketControler;
+import sockets.SocketPart;
 import controler.controlerLocal.ChessGameControler;
 
 public class LauncherGUIBlanc {
@@ -12,6 +12,7 @@ public class LauncherGUIBlanc {
 		ChessGame cg = new ChessGame();
 
 		String IP = "192.168.0.25";
+		//localhost
 		IP="127.0.0.1";
 		SocketPart s = new Client(IP,2009);
 
